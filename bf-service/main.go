@@ -17,6 +17,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 	"net/http"
 	"github.com/venicegeo/bf-algo"
 )
@@ -28,13 +29,36 @@ func main() {
 			case "/":
 				fmt.Fprintf(w, "hello.")
 			case "/dummyAlgo": {
-				dummyAOI := []byte("{\"BoundBox\":[0,0,5,5],\"ImageLink\":\"dummy\"}")
-				fmt.Fprintf(w, "%d", bfalgo.ProcessEdgeLine(dummyAOI))
+				aoiString := r.URL.Query().Get("aoi")
+				if aoiString == "" {
+					fmt.Fprintf(w, "Error: Please specify an aoi in your query parameters\n")
+					fmt.Fprintf(w, "Example: aoi={\"BoundBox\":[0,0,5,5],\"ImageLink\":\"dummy\"}\n")
+				} else {
+				//dummyAOI := []byte("{\"BoundBox\":[0,0,5,5],\"ImageLink\":\"dummy\"}")
+					idx, err := bfalgo.ProcessEdgeLine([]byte(aoiString))
+					if err != nil {
+						fmt.Fprintf(w, err.Error())
+					} else {
+						fmt.Fprintf(w, "%d", idx)
+					}
+				}
 			}
 			case "/checkStatus":
-				fmt.Fprintf(w, bfalgo.GetProcStatus(0))
+				idxString := r.URL.Query().Get("procIndex")
+				idx, err := strconv.Atoi(idxString)
+				if err != nil{
+					fmt.Fprintf(w, "Error: Please specify an int procIndex in your query parameters")
+				} else {
+					fmt.Fprintf(w, bfalgo.GetProcStatus(idx))
+				}
 			case "/getResult":
-				fmt.Fprintf(w, bfalgo.GetResult(0))
+				idxString := r.URL.Query().Get("resultIndex")
+				idx, err := strconv.Atoi(idxString)
+				if err != nil{
+					fmt.Fprintf(w, "Error: Please specify an int resultIndex in your query parameters")
+				} else {
+					fmt.Fprintf(w, bfalgo.GetResult(idx))
+				}
 			case "/help":
 				help(w)
 			default:

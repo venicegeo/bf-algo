@@ -25,11 +25,11 @@ type jsonHolder struct {
 }
 
 var dumbDB []jsonHolder
-var nextIndex = 0
+var lastIndex = -1
 
 // takes input in Json
 // gives output as GeoJson
-func ProcessEdgeLine(jsonAOI []byte) int {
+func ProcessEdgeLine(jsonAOI []byte) (int, error) {
 
 	type aoiStruct struct {
 		BoundBox [4]float64 // {minX, minY, maxX, maxY}
@@ -40,7 +40,7 @@ func ProcessEdgeLine(jsonAOI []byte) int {
 
 	err:= json.Unmarshal(jsonAOI, &dataAOI)
 	if err != nil {
-		fmt.Println("error:", err)
+		return -1, err
 	}
 
 	dataLoad := []byte ( fmt.Sprintf(
@@ -51,12 +51,12 @@ func ProcessEdgeLine(jsonAOI []byte) int {
 		dataAOI.BoundBox[3] ) )
 
 	dumbDB = append (dumbDB, jsonHolder{dataLoad, 3}) 
-	nextIndex++
-	return nextIndex
+	lastIndex++
+	return lastIndex, nil
 }
 
 func GetProcStatus(procId int) string {
-	if procId >= nextIndex {
+	if procId > lastIndex {
 		return "Error: Process not initiated."
 	}
 	if dumbDB[procId].status == 0 {
@@ -68,11 +68,11 @@ func GetProcStatus(procId int) string {
 }
 
 func GetResult(resId int) string {
-	if resId >= nextIndex {
+	if resId > lastIndex {
 		return "Error: Process not initiated."
 	}
 	if dumbDB[resId].status == 0 {
-		return string(dumbDB[0].algPayload)
+		return string(dumbDB[resId].algPayload)
 	} else {
 		return "Error: Process incomplete."
 	}

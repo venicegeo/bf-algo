@@ -15,15 +15,69 @@
 package main
 
 import (
+	"fmt"
+	"strconv"
 	"github.com/spf13/cobra"
 	"github.com/venicegeo/bf-algo"
 )
 
 var algoCmd = &cobra.Command{
-	Use: "grid",
+	Use: "bf-cmdline",
 	Long: " is a command-line interface to the GRiD database.",
 }
 
-func main() {
+var processCmd = &cobra.Command{
+	Use:   "process",
+	Short: "Initiate beachfront algorithm.  Example Format: bf-cmdline process \"{\\\"BoundBox\\\":[0,0,5,5],\\\"ImageLink\\\":\\\"dummy\\\"}\"",
+	Long:  "",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println(bfalgo.ProcessEdgeLine([]byte(args[0])))
+	},
+}
 
+var statusCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version number of the GRiD CLI",
+	Long:  "",
+	Run: func(cmd *cobra.Command, args []string) {
+		idx, err := strconv.Atoi(args[0])
+		if err != nil{
+			fmt.Println("Error: Please specify an int procIndex.  If necessary, get help.")
+		} else {
+			fmt.Println(bfalgo.GetProcStatus(idx))
+		}
+	},
+}
+
+var resultCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version number of the GRiD CLI",
+	Long:  "",
+	Run: func(cmd *cobra.Command, args []string) {
+		idx, err := strconv.Atoi(args[0])
+		if err != nil{
+			fmt.Println("Error: Please specify an int resultIndex.  If necessary, get help.")
+		} else {
+			fmt.Println(bfalgo.GetResult(idx))
+		}		
+		
+	},
+}
+
+var helpCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print the version number of the GRiD CLI",
+	Long:  "",
+	Run: func(cmd *cobra.Command, args []string) {
+		
+		fmt.Println("grid v0.1 -- HEAD")
+	},
+}
+
+func main() {
+	algoCmd.AddCommand(processCmd)
+	algoCmd.AddCommand(statusCmd)
+	algoCmd.AddCommand(resultCmd)
+	algoCmd.AddCommand(helpCmd)
+	algoCmd.Execute()
 }

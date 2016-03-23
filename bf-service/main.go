@@ -15,42 +15,42 @@
 package main
 
 import (
-    "fmt"
-    "log"
-    "net/http"
-    "github.com/venicegeo/bf-algo"
+	"fmt"
+	"log"
+	"net/http"
+	"github.com/venicegeo/bf-algo"
 )
 
 func main() {
 
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        switch r.URL.Path{
-            case "/":
-                fmt.Fprintf(w, "hello.")
-            case "/dummyAlgo": {
-                dummyAOI := []byte("{\"BoundBox\":[0,0,5,5],\"ImageLink\":\"dummy\"}")
-                fmt.Fprintf(w, "%d", beachfront.ProcessEdgeLine(dummyAOI))
-            }
-            case "/checkStatus":
-                fmt.Fprintf(w, beachfront.GetProcStatus(0))
-            case "/getResult":
-                fmt.Fprintf(w, beachfront.GetResult(0))
-            case "/help":
-                help(w)
-            default:
-                other(w)
-        }
-    })
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path{
+			case "/":
+				fmt.Fprintf(w, "hello.")
+			case "/dummyAlgo": {
+				dummyAOI := []byte("{\"BoundBox\":[0,0,5,5],\"ImageLink\":\"dummy\"}")
+				fmt.Fprintf(w, "%d", bfalgo.ProcessEdgeLine(dummyAOI))
+			}
+			case "/checkStatus":
+				fmt.Fprintf(w, bfalgo.GetProcStatus(0))
+			case "/getResult":
+				fmt.Fprintf(w, bfalgo.GetResult(0))
+			case "/help":
+				help(w)
+			default:
+				other(w)
+		}
+	})
 
-    log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func other(w http.ResponseWriter) {
-    fmt.Fprintf(w, "Command undefined.  Try help?\n")
+	fmt.Fprintf(w, "Command undefined.  Try help?\n")
 }
 
 func help(w http.ResponseWriter) {
-    fmt.Fprintf(w, "We're sorry, help is not yet implemented\n")
+	fmt.Fprintf(w, "We're sorry, help is not yet implemented\n")
 }
 
 

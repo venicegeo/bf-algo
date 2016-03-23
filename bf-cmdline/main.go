@@ -14,8 +14,16 @@
 
 package main
 
-//import "github.com/venicegeo/grid-sdk-go/grid/cmd"
+import (
+	"github.com/spf13/cobra"
+	"github.com/venicegeo/bf-algo"
+)
+
+var algoCmd = &cobra.Command{
+	Use: "grid",
+	Long: " is a command-line interface to the GRiD database.",
+}
 
 func main() {
-//	cmd.Execute()
+
 }

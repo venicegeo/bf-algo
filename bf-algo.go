@@ -12,16 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package bf-algo
+package bfalgo
 
 import (
-    "fmt"
-    "encoding/json"
+	"fmt"
+	"encoding/json"
 )
 
 type jsonHolder struct {
-    algPayload []byte
-    status int
+	algPayload []byte
+	status int
 }
 
 var dumbDB []jsonHolder
@@ -31,50 +31,50 @@ var nextIndex = 0
 // gives output as GeoJson
 func ProcessEdgeLine(jsonAOI []byte) int {
 
-    type aoiStruct struct {
-        BoundBox [4]float64 // {minX, minY, maxX, maxY}
-        ImageLink string // URL of image to be examined
-    }
+	type aoiStruct struct {
+		BoundBox [4]float64 // {minX, minY, maxX, maxY}
+		ImageLink string // URL of image to be examined
+	}
 
-    var dataAOI aoiStruct  
+	var dataAOI aoiStruct  
 
-    err:= json.Unmarshal(jsonAOI, &dataAOI)
-    if err != nil {
-        fmt.Println("error:", err)
-    }
+	err:= json.Unmarshal(jsonAOI, &dataAOI)
+	if err != nil {
+		fmt.Println("error:", err)
+	}
 
-    dataLoad := []byte ( fmt.Sprintf(
-        "{ \"type\": \"Feature\", \"geometry\": { \"type\": \"LineString\", \"coordinates\": [ [%f, %f], [%f, %f] ] }, \"properties\": { \"algorithm\": \"dummy\" } }", 
-        dataAOI.BoundBox[0],
-        dataAOI.BoundBox[1],
-        dataAOI.BoundBox[2],
-        dataAOI.BoundBox[3] ) )
+	dataLoad := []byte ( fmt.Sprintf(
+		"{ \"type\": \"Feature\", \"geometry\": { \"type\": \"LineString\", \"coordinates\": [ [%f, %f], [%f, %f] ] }, \"properties\": { \"algorithm\": \"dummy\" } }", 
+		dataAOI.BoundBox[0],
+		dataAOI.BoundBox[1],
+		dataAOI.BoundBox[2],
+		dataAOI.BoundBox[3] ) )
 
-    dumbDB = append (dumbDB, jsonHolder{dataLoad, 3}) 
-    nextIndex++
-    return nextIndex
+	dumbDB = append (dumbDB, jsonHolder{dataLoad, 3}) 
+	nextIndex++
+	return nextIndex
 }
 
 func GetProcStatus(procId int) string {
-    if procId >= nextIndex {
-        return "Error: Process not initiated."
-    }
-    if dumbDB[procId].status == 0 {
-        return "done"
-    } else {
-        dumbDB[procId].status--
-        return "processing"
-    }
+	if procId >= nextIndex {
+		return "Error: Process not initiated."
+	}
+	if dumbDB[procId].status == 0 {
+		return "done"
+	} else {
+		dumbDB[procId].status--
+		return "processing"
+	}
 }
 
 func GetResult(resId int) string {
-    if resId >= nextIndex {
-        return "Error: Process not initiated."
-    }
-    if dumbDB[resId].status == 0 {
-        return string(dumbDB[0].algPayload)
-    } else {
-        return "Error: Process incomplete."
-    }
+	if resId >= nextIndex {
+		return "Error: Process not initiated."
+	}
+	if dumbDB[resId].status == 0 {
+		return string(dumbDB[0].algPayload)
+	} else {
+		return "Error: Process incomplete."
+	}
 }
 

@@ -31,7 +31,7 @@ func main() {
 		switch r.URL.Path{
 			case "/": {
 				//fmt.Fprintf(w, "hello.")
-				cmdName := "ossim-info"
+				cmdName := "ls"
 				cmdArgs := []string{""}
 
 				cmd := exec.Command(cmdName, cmdArgs...)

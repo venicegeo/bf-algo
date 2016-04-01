@@ -20,6 +20,7 @@ import (
 	"strconv"
 	"net/http"
 	"github.com/venicegeo/bf-algo"
+	"os"
 	"os/exec"
 )
 

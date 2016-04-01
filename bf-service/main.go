@@ -19,7 +19,7 @@ import (
 	"log"
 	"strconv"
 	"net/http"
-	"github.com/venicegeo/bf-algo",
+	"github.com/venicegeo/bf-algo"
 	"os/exec"
 )
 
@@ -28,13 +28,13 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path{
 			case "/": {
-				fmt.Fprintf(w, "hello.")
-				//cmd := "ossim-info"
-				//args := []string{""}
-				//if err := exec.Command(cmd, args...).Run(); err != nil {
-				//	fmt.Fprintln(os.Stderr, err)
-				//	os.Exit(1)
-				//}
+				//fmt.Fprintf(w, "hello.")
+				cmd := "ossim-info"
+				args := []string{""}
+				if err := exec.Command(cmd, args...).Run(); err != nil {
+					fmt.Fprintln(os.Stderr, err)
+					os.Exit(1)
+				}
 			}
 			case "/dummyAlgo": {
 				aoiString := r.URL.Query().Get("aoi")

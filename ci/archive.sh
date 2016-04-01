@@ -11,6 +11,8 @@ source $root/ci/vars.sh
 
 go get -v github.com/venicegeo/$APP/...
 
-src=$GOPATH/bin/bf-service
+src=$GOPATH/bin/
+cp $src/bf-service .
+#mv $src $root/$APP.$EXT
 
-mv $src $root/$APP.$EXT
+tar -czf $APP.$EXT bf-service

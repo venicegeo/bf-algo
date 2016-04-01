@@ -15,6 +15,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"strconv"
@@ -30,13 +31,34 @@ func main() {
 		switch r.URL.Path{
 			case "/": {
 				//fmt.Fprintf(w, "hello.")
-				cmd := "ossim-info"
-				args := []string{""}
-				if err := exec.Command(cmd, args...).Run(); err != nil {
-					fmt.Fprintln(os.Stderr, err)
+				cmdName := "ossim-info"
+				cmdArgs := []string{""}
+
+				cmd := exec.Command(cmdName, cmdArgs...)
+				cmdReader, err := cmd.StdoutPipe()
+				if err != nil {
+					fmt.Fprintln(os.Stderr, "Error creating StdoutPipe for Cmd", err)
 					os.Exit(1)
 				}
-				else fmt.Fprintf(w, "Failed.")
+
+				scanner := bufio.NewScanner(cmdReader)
+				go func() {
+					for scanner.Scan() {
+						fmt.Printf("ossim-info out | %s\n", scanner.Text())
+					}
+				}()
+
+				err = cmd.Start()
+				if err != nil {
+					fmt.Fprintln(os.Stderr, "Error starting Cmd", err)
+					os.Exit(1)
+				}
+
+				err = cmd.Wait()
+				if err != nil {
+					fmt.Fprintln(os.Stderr, "Error waiting for Cmd", err)
+					os.Exit(1)
+				}
 			}
 			case "/dummyAlgo": {
 				aoiString := r.URL.Query().Get("aoi")

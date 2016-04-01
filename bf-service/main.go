@@ -36,6 +36,7 @@ func main() {
 					fmt.Fprintln(os.Stderr, err)
 					os.Exit(1)
 				}
+				else fmt.Fprintf(w, "Failed.")
 			}
 			case "/dummyAlgo": {
 				aoiString := r.URL.Query().Get("aoi")

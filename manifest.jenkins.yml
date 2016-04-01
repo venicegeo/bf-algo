@@ -1,7 +1,7 @@
 applications:
 - name: bf-algo
   host: bf-algo
-  command: ./bf-service
+  command: ./bf-algo.bin
   buildpack: binary_buildpack
   domain: stage.geointservices.io
   memory: 1G

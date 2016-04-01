@@ -37,26 +37,27 @@ func main() {
 				cmd := exec.Command(cmdName, cmdArgs...)
 				cmdReader, err := cmd.StdoutPipe()
 				if err != nil {
-					fmt.Fprintln(os.Stderr, "Error creating StdoutPipe for Cmd", err)
+					fmt.Fprintf(w, "Error creating StdoutPipe for Cmd")
 					os.Exit(1)
 				}
 
 				scanner := bufio.NewScanner(cmdReader)
 				go func() {
 					for scanner.Scan() {
-						fmt.Printf("ossim-info out | %s\n", scanner.Text())
+						fmt.Fprintf(w, "ossim-info out \n")
+						//fmt.Fprintf(w, "ossim-info out | %s\n", scanner.Text())
 					}
 				}()
 
 				err = cmd.Start()
 				if err != nil {
-					fmt.Fprintln(os.Stderr, "Error starting Cmd", err)
+					fmt.Fprintf(w, "Error starting Cmd")
 					os.Exit(1)
 				}
 
 				err = cmd.Wait()
 				if err != nil {
-					fmt.Fprintln(os.Stderr, "Error waiting for Cmd", err)
+					fmt.Fprintf(w, "Error waiting for Cmd")
 					os.Exit(1)
 				}
 			}

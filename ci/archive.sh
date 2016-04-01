@@ -13,5 +13,3 @@ go get -v github.com/venicegeo/$APP/...
 
 src=$GOPATH/bin/bf-service
 mv $src $root/$APP.$EXT
-
-#tar -czf $APP.$EXT bf-service

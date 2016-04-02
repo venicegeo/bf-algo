@@ -12,7 +12,7 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-				cmd1 := exec.Command("which", "ossim-info")
+				cmd1 := exec.Command("ls", "-alh", "/etc/")
                                 out1, err1 := cmd1.Output()
 
                                 if err1 != nil {

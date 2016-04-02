@@ -4,8 +4,7 @@ import (
         "fmt"
         "log"
         "net/http"
-	"os"
-        //"os/exec"
+        "os/exec"
 )
 
 func main() {
@@ -13,12 +12,14 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-				fmt.Fprintf(w, os.Getenv("HOME"))
-                                //out, err := exec.Command("./ossim-info").CombinedOutput()
-                                //if err != nil {
-                                //        log.Fatal(err)
-                                //}
-                                //fmt.Fprintf(w, "Cheese %s\n", out)
+				cmd := exec.Command("ossim-info")
+                                out, err := cmd.Output()
+
+                                if err != nil {
+                                        fmt.Fprintf(w, "Cheese", err.Error())
+                                        return
+                                }
+                                fmt.Fprintf(w, string(out))
                         }
                 }
         })

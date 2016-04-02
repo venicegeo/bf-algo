@@ -13,9 +13,18 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-				fmt.Fprintf(w, os.Getenv("HOME"))
+				cmd := exec.Command("which", "ossim-info")
+                                out, err := cmd.Output()
 
-				cmd := exec.Command("ls", "-alh")
+                                if err != nil {
+                                        fmt.Fprintf(w, "Cheese", err.Error())
+                                        return
+                                }
+                                fmt.Fprintf(w, string(out))
+
+
+
+				cmd := exec.Command("cat", "/etc/*-release")
                                 out, err := cmd.Output()
 
                                 if err != nil {

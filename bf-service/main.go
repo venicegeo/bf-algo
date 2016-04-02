@@ -12,6 +12,8 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
+				fmt.Fprintf(w, os.Getenv("HOME"))
+
 				cmd := exec.Command("ls", "-alh")
                                 out, err := cmd.Output()
 

@@ -12,7 +12,7 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-                                out, err := exec.Command("ossim-info").Output()
+                                out, err := exec.Command("pwd").Output()
                                 if err != nil {
                                         log.Fatal(err)
                                 }

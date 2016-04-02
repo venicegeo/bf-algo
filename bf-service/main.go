@@ -5,7 +5,6 @@ import (
         "log"
         "net/http"
         "os/exec"
-	"os"
 )
 
 func main() {

@@ -12,25 +12,25 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-				cmd := exec.Command("which", "ossim-info")
-                                out, err := cmd.Output()
+				cmd1 := exec.Command("which", "ossim-info")
+                                out1, err1 := cmd.Output()
 
-                                if err != nil {
-                                        fmt.Fprintf(w, "Cheese", err.Error())
+                                if err1 != nil {
+                                        fmt.Fprintf(w, "Cheese", err1.Error())
                                         return
                                 }
-                                fmt.Fprintf(w, string(out))
+                                fmt.Fprintf(w, string(out1))
 
 
 
-				cmd := exec.Command("cat", "/etc/*-release")
-                                out, err := cmd.Output()
+				cmd2 := exec.Command("cat", "/etc/*-release")
+                                out2, err2 := cmd.Output()
 
-                                if err != nil {
-                                        fmt.Fprintf(w, "Cheese", err.Error())
+                                if err2 != nil {
+                                        fmt.Fprintf(w, "Cheese", err2.Error())
                                         return
                                 }
-                                fmt.Fprintf(w, string(out))
+                                fmt.Fprintf(w, string(out2))
                         }
                 }
         })

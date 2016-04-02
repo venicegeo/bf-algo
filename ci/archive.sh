@@ -6,7 +6,6 @@ popd > /dev/null
 
 export GOPATH=$root/gopath
 mkdir -p $GOPATH
-cat /etc/*-release
 source $root/ci/vars.sh
 
 go get -v github.com/venicegeo/$APP/...

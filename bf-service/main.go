@@ -13,7 +13,7 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 				cmd1 := exec.Command("which", "ossim-info")
-                                out1, err1 := cmd.Output()
+                                out1, err1 := cmd1.Output()
 
                                 if err1 != nil {
                                         fmt.Fprintf(w, "Cheese", err1.Error())
@@ -24,7 +24,7 @@ func main() {
 
 
 				cmd2 := exec.Command("cat", "/etc/*-release")
-                                out2, err2 := cmd.Output()
+                                out2, err2 := cmd2.Output()
 
                                 if err2 != nil {
                                         fmt.Fprintf(w, "Cheese", err2.Error())

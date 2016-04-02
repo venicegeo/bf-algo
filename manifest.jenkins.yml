@@ -2,7 +2,7 @@ applications:
 - name: bf-algo
   host: bf-algo
   command: ./bf-algo.bin
-  buildpack: https://github.com/venicegeo/binary-ossim-buildpack
+  buildpack: https://github.com/venicegeo/binary-gdal-buildpack
   domain: stage.geointservices.io
   memory: 1G
   instances: 1

@@ -22,7 +22,7 @@ func main() {
                                 }
                                 fmt.Fprintf(w, string(out1))
 
-				cmd2 := exec.Command("ls", "-alh")
+				cmd2 := exec.Command("./command.sh")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				if err2 != nil {

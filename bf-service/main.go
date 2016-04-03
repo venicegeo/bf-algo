@@ -12,7 +12,7 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
                         case "/": {
-				cmd1 := exec.Command("ls", "-Rlh")
+				cmd1 := exec.Command("./command.sh")
                                 out1, err1 := cmd1.Output()
 
                                 if err1 != nil {

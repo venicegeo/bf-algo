@@ -41,17 +41,17 @@ func main() {
 
 
 
-				cmd2 := exec.Command("./ossim-info")
+				cmd2 := exec.Command("./build/bin/ossim-info")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				printError(err2, w)
 				printOutput(out2, w)
 
-				cmd3 := exec.Command("cat", "/etc/ld.so.conf.d/libossim.conf")
-                                printCommand(cmd3, w)
-                                out3, err3 := cmd3.CombinedOutput()
-                                printError(err3, w)
-                                printOutput(out3, w)
+				//cmd3 := exec.Command("cat", "/etc/ld.so.conf.d/libossim.conf")
+                                //printCommand(cmd3, w)
+                                //out3, err3 := cmd3.CombinedOutput()
+                                //printError(err3, w)
+                                //printOutput(out3, w)
                         }
                 }
         })

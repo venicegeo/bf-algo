@@ -1,7 +1,7 @@
 applications:
 - name: bf-algo
   host: bf-algo
-  command: chmod 755 ./bf-algo.bin && echo "/home/vcap/app/build/lib" >> /etc/ld.so.conf.d/libossim.conf && ./bf-algo.bin
+  command: chmod 755 ./bf-algo.bin && ./bf-algo.bin
   buildpack: https://github.com/venicegeo/binary-ossim-buildpack
   domain: stage.geointservices.io
   memory: 1G

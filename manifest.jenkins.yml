@@ -7,3 +7,5 @@ applications:
   memory: 1G
   instances: 1
   timeout: 180
+  env: 
+    PATH: "/usr/bin:/home/vcap/app:/home/vcap/app/build/bin:/home/vcap/app/build/lib"

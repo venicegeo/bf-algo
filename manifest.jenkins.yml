@@ -7,5 +7,3 @@ applications:
   memory: 1G
   instances: 1
   timeout: 180
-  env: 
-    PATH: /home/vap/app:build/bin:/build/lib

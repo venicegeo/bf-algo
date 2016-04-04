@@ -7,3 +7,5 @@ applications:
   memory: 1G
   instances: 1
   timeout: 180
+  env:
+    OSSIM_PREFS_FILE=~/ossim.config

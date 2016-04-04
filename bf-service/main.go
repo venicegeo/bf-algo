@@ -42,15 +42,11 @@ func main() {
 
 
 
-				//cmd2 := exec.Command("./ossim-info.bin")
-				//out2, err2 := cmd2.CombinedOutput()
+				cmd2 := exec.Command("./build/bin/ossim-info")
+				out2, err2 := cmd2.CombinedOutput()
 				
-				//if err2 != nil {
-				//	log.Fatal(err2.Error())
-				//	fmt.Fprintf(w, "Cheese", err2.Error())
-				//	return
-				//}
-				//fmt.Fprintf(w, string(out2))
+				printError(err2, w)
+				printOutput(out2, w)
                         }
                 }
         })

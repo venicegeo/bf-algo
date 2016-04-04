@@ -41,7 +41,7 @@ func main() {
 
 
 
-				cmd2 := exec.Command("ls", "-alhR", "/etc")
+				cmd2 := exec.Command("./ossim-info")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				printError(err2, w)

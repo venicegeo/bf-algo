@@ -9,3 +9,4 @@ applications:
   timeout: 180
   env: 
     PATH: "$PATH:/home/vcap/app/build/bin:/home/vcap/app/build/lib"
+    LD_LIBRARY_PATH: "/home/vcap/app/build/lib"

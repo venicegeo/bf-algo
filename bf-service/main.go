@@ -31,17 +31,17 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 
-				//cmd1 := exec.Command("touch", "/etc/ld.so.conf.d/libossim.conf")
-				//printCommand(cmd1, w)
-                                //out1, err1 := cmd1.CombinedOutput()
-				//printError(err1, w)
-				//printOutput(out1, w)
+				cmd1 := exec.Command("cat", "/proc/cpuinfo")
+				printCommand(cmd1, w)
+                                out1, err1 := cmd1.CombinedOutput()
+				printError(err1, w)
+				printOutput(out1, w)
 
 
 
 
 
-				cmd2 := exec.Command("./build/bin/ossim-info")
+				cmd2 := exec.Command("free", "-m")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				printError(err2, w)

@@ -31,7 +31,7 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 
-				cmd1 := exec.Command("which", "git")
+				cmd1 := exec.Command("ls", "-alhR")
 				printCommand(cmd1, w)
                                 out1, err1 := cmd1.CombinedOutput()
 				printError(err1, w)

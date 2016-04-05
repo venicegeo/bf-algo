@@ -8,7 +8,7 @@ applications:
   instances: 1
   timeout: 180
   env: 
-    LD_LIBRARY_PATH: "/home/vcap/app/build/lib"
-    OSSIM_BUILD_DIR: "/home/vcap/app/build"
-    OSSIM_PREFS_FILE: "/home/vcap/app/build/ossim.config"
-    PATH: "$PATH:/home/vcap/app/build/bin:/home/vcap/app/build/lib"
+    LD_LIBRARY_PATH: "/home/vcap/app/install/lib"
+    OSSIM_INSTALL_PREFIX: "/home/vcap/app/install"
+    OSSIM_PREFS_FILE: "$OSSIM_INSTALL_PREFIX/ossim.config"
+    PATH: "$PATH:$OSSIM_INSTALL_PREFIX/bin:$OSSIM_INSTALL_PREFIXlib"

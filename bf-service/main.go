@@ -5,7 +5,7 @@ import (
         "log"
         "net/http"
 	"strings"
-//	"os"
+	"os"
         "os/exec"
 )
 
@@ -41,7 +41,9 @@ func main() {
 
 
 
-				//fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
+				fmt.Fprintf(w, "OSSIM_PREFS_FILE:", os.Getenv("OSSIM_PREFS_FILE"))
+				fmt.Fprintf(w, "OSSIM_BUILD_DIR:", os.Getenv("OSSIM_BUILD_DIR"))				
+
 				cmd2 := exec.Command("ossim-info", "--plugins")
 				out2, err2 := cmd2.CombinedOutput()
 				

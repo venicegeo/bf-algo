@@ -32,7 +32,7 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 
-				cmd1 := exec.Command("ls", "-alhR")
+				cmd1 := exec.Command("ls", "./build/bin")
 				printCommand(cmd1, w)
                                 out1, err1 := cmd1.CombinedOutput()
 				printError(err1, w)
@@ -42,7 +42,7 @@ func main() {
 
 
 				//fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
-				cmd2 := exec.Command("which", "ossim-info")
+				cmd2 := exec.Command("./build/bin/ossim-info")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				printError(err2, w)

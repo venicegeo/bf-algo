@@ -42,7 +42,7 @@ func main() {
 
 
 				//fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
-				cmd2 := exec.Command("./build/bin/ossim-info")
+				cmd2 := exec.Command("ossim-info", "--plugins")
 				out2, err2 := cmd2.CombinedOutput()
 				
 				printError(err2, w)

@@ -32,7 +32,6 @@ func main() {
                         case "/": {
 
 
-ossim-cli shoreline --image garden_b3.tif, garden_b6.tif --projection geo-scaled --threshold 0.5 --tolerance 0 product.json
 				cmd1 := exec.Command("ossim-cli", "shoreline", "--image", "garden_b3.tif", "garden_b6.tif", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
 				printCommand(cmd1, w)
                                 out1, err1 := cmd1.CombinedOutput()

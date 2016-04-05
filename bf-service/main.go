@@ -5,7 +5,6 @@ import (
         "log"
         "net/http"
 	"strings"
-	"os"
         "os/exec"
 )
 
@@ -32,29 +31,20 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 
-				cmd1 := exec.Command("ls", "./build/bin")
+
+ossim-cli shoreline --image garden_b3.tif, garden_b6.tif --projection geo-scaled --threshold 0.5 --tolerance 0 product.json
+				cmd1 := exec.Command("ossim-cli", "shoreline", "--image", "garden_b3.tif", "garden_b6.tif", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
 				printCommand(cmd1, w)
                                 out1, err1 := cmd1.CombinedOutput()
 				printError(err1, w)
 				printOutput(out1, w)
 
-
-
-
-				fmt.Fprintf(w, "OSSIM_PREFS_FILE:", os.Getenv("OSSIM_PREFS_FILE"))
-				fmt.Fprintf(w, "OSSIM_BUILD_DIR:", os.Getenv("OSSIM_BUILD_DIR"))				
-
-				cmd2 := exec.Command("ossim-info", "--plugins")
+				cmd2 := exec.Command("cat", "product.json")
+				printCommand(cmd2, w)
 				out2, err2 := cmd2.CombinedOutput()
-				
 				printError(err2, w)
 				printOutput(out2, w)
 
-				//cmd3 := exec.Command("cat", "/etc/ld.so.conf.d/libossim.conf")
-                                //printCommand(cmd3, w)
-                                //out3, err3 := cmd3.CombinedOutput()
-                                //printError(err3, w)
-                                //printOutput(out3, w)
                         }
                 }
         })

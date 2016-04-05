@@ -9,6 +9,6 @@ applications:
   timeout: 180
   env: 
     LD_LIBRARY_PATH: "/home/vcap/app/build/lib"
-    OSSIM_BUILD_DIR: "$HOME"
+    OSSIM_BUILD_DIR: "/home/vcap/app/build"
     OSSIM_PREFS_FILE: "/home/vcap/app/build/ossim.config"
     PATH: "$PATH:/home/vcap/app/build/bin:/home/vcap/app/build/lib"

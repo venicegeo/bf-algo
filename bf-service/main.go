@@ -5,7 +5,7 @@ import (
         "log"
         "net/http"
 	"strings"
-	"os"
+//	"os"
         "os/exec"
 )
 
@@ -32,7 +32,7 @@ func main() {
                 switch r.URL.Path{
                         case "/": {
 
-				cmd1 := exec.Command("ossim-info", "--plugins")
+				cmd1 := exec.Command("./build/bin/ossim-info", "--plugins")
 				printCommand(cmd1, w)
                                 out1, err1 := cmd1.CombinedOutput()
 				printError(err1, w)
@@ -41,12 +41,12 @@ func main() {
 
 
 
-				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
-				//cmd2 := exec.Command("PATH:", "-alhR")
-				//out2, err2 := cmd2.CombinedOutput()
+				//fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
+				cmd2 := exec.Command("which", "ossim-info")
+				out2, err2 := cmd2.CombinedOutput()
 				
-				//printError(err2, w)
-				//printOutput(out2, w)
+				printError(err2, w)
+				printOutput(out2, w)
 
 				//cmd3 := exec.Command("cat", "/etc/ld.so.conf.d/libossim.conf")
                                 //printCommand(cmd3, w)

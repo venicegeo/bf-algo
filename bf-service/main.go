@@ -5,6 +5,7 @@ import (
         "log"
         "net/http"
 	"strings"
+	"os"
         "os/exec"
 )
 
@@ -40,12 +41,12 @@ func main() {
 
 
 
-
-				cmd2 := exec.Command("ls", "-alhR")
-				out2, err2 := cmd2.CombinedOutput()
+				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
+				//cmd2 := exec.Command("PATH:", "-alhR")
+				//out2, err2 := cmd2.CombinedOutput()
 				
-				printError(err2, w)
-				printOutput(out2, w)
+				//printError(err2, w)
+				//printOutput(out2, w)
 
 				//cmd3 := exec.Command("cat", "/etc/ld.so.conf.d/libossim.conf")
                                 //printCommand(cmd3, w)

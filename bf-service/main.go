@@ -38,7 +38,7 @@ func main() {
 				printError(err1, w)
 				printOutput(out1, w)
 
-				cmd2 := exec.Command("cat", "product.json")
+				cmd2 := exec.Command("ls", "-alhR")
 				printCommand(cmd2, w)
 				out2, err2 := cmd2.CombinedOutput()
 				printError(err2, w)

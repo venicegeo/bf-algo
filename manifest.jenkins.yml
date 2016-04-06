@@ -10,5 +10,5 @@ applications:
   env: 
     LD_LIBRARY_PATH: "/home/vcap/app/install/lib"
     OSSIM_INSTALL_PREFIX: "/home/vcap/app/install"
-    OSSIM_PREFS_FILE: "$OSSIM_INSTALL_PREFIX/ossim.config"
-    PATH: "$PATH:$OSSIM_INSTALL_PREFIX/bin:$OSSIM_INSTALL_PREFIX/lib"
+    OSSIM_PREFS_FILE: "/home/vcap/app/install/ossim.config"
+    PATH: "$PATH:/home/vcap/app/install/bin:/home/vcap/app/install/lib"

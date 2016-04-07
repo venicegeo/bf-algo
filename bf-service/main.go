@@ -41,7 +41,7 @@ func main() {
 				cmd2 := exec.Command("cat", "product.json")
 				//printCommand(cmd2, w)
 				//out2, err2 := cmd2.CombinedOutput()
-				out2 := cmd2.CombinedOutput()
+				out2 := cmd2.Output()
 				//printError(err2, w)
 				printOutput(out2, w)
 

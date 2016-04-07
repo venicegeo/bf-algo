@@ -21,7 +21,7 @@ func printError(err error, w http.ResponseWriter) {
 
 func printOutput(outs []byte, w http.ResponseWriter) {
   if len(outs) > 0 {
-    fmt.Fprintf(w, "==> Output: %s\n", string(outs))
+    fmt.Fprintf(w, string(outs))
   }
 }
 

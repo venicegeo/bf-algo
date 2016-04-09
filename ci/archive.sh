@@ -4,6 +4,8 @@ pushd `dirname $0`/.. > /dev/null
 root=$(pwd -P)
 popd > /dev/null
 
+aws s3 ls
+
 export GOPATH=$root/gopath
 mkdir -p $GOPATH
 source $root/ci/vars.sh

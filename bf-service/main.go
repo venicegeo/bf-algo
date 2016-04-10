@@ -58,7 +58,7 @@ func main() {
 				printCommand(cmd10, w)
 				out10, err10 := cmd10.CombinedOutput()
 				printError(err10, w)
-				printOutput(cmd10, w)
+				printOutput(out10, w)
 				//cmd10.Run()
 			}
 			case "/prep11": {

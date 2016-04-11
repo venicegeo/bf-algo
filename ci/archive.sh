@@ -4,6 +4,8 @@ pushd `dirname $0`/.. > /dev/null
 root=$(pwd -P)
 popd > /dev/null
 
+which s3cmd
+
 export GOPATH=$root/gopath
 mkdir -p $GOPATH
 source $root/ci/vars.sh

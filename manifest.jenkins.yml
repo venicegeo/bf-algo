@@ -1,7 +1,7 @@
 applications:
 - name: bf-algo
   host: bf-algo
-  command: chmod 755 ./bf-algo.bin && ./bf-algo.bin && chmod 775 prep.sh && ./prep.sh
+  command: chmod 775 prep.sh && chmod 755 ./bf-algo.bin && ./bf-algo.bin
   buildpack: https://github.com/venicegeo/binary-ossim-buildpack
   domain: stage.geointservices.io
   memory: 1G

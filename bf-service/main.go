@@ -37,7 +37,9 @@ func main() {
 			}
 			case "/prep": {
 				cmd0 := exec.Command("./prep.sh")
-                                cmd0.Run()
+                                out0, err0 := cmd0.CombinedOutput()
+                                printError(err0, w)
+                                printOutput(out0, w)
 			}
 			case "/case1": {
 				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "LC80090472014280LGN00_B3.TIF,", "LC80090472014280LGN00_B6.TIF", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")

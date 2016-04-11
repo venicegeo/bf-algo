@@ -4,6 +4,7 @@ applications:
   command: chmod 775 prep.sh && chmod 755 ./bf-algo.bin && ./bf-algo.bin
   buildpack: https://github.com/venicegeo/binary-ossim-buildpack
   domain: stage.geointservices.io
+  disk_quota: 4096M
   memory: 1G
   instances: 1
   timeout: 180

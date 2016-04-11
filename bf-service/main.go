@@ -90,7 +90,7 @@ func main() {
                                 printOutput(out1, w)
 			}
 			default: {
-				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "LC82010352014217LGN00_B3.TIF,", "LC82010352014217LGN00_B6.TIF", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
+				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "garden_b3.tif,", "garden_b6.tif", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
                                 cmd0.Run()
 
                                 cmd1 := exec.Command("cat", "product.json")

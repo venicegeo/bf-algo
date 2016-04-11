@@ -29,10 +29,9 @@ func main() {
 
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Path{
-                 
 			case "/ls": {
 				cmdLs := exec.Command("ls", "-alh")
-				outLs := cmd3.Output()
+				outLs := cmdLs.Output()
 				printOutput(outLs, w)
 			}
 			case "/case1": {
@@ -81,6 +80,15 @@ func main() {
                                 printOutput(out1, w)
 			}
 			case "/case6": {
+				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "LC82010352014217LGN00_B3.TIF,", "LC82010352014217LGN00_B6.TIF", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
+                                cmd0.Run()
+
+                                cmd1 := exec.Command("cat", "product.json")
+                                out1, err1 := cmd1.CombinedOutput()
+                                printError(err1, w)
+                                printOutput(out1, w)
+			}
+			default: {
 				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "LC82010352014217LGN00_B3.TIF,", "LC82010352014217LGN00_B6.TIF", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
                                 cmd0.Run()
 

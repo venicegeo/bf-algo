@@ -21,7 +21,7 @@ func printError(err error, w http.ResponseWriter) {
 
 func printOutput(outs []byte, w http.ResponseWriter) {
   if len(outs) > 0 {
-	fmt.Fprintf(w, `{ "dataType": { "type": "text", "content": "%s" "mimeType": "text/plain" }, "metadata": {} }`, string(outs) )
+	fmt.Fprintf(w, `{ "dataType": { "type": "text", "content": "%s", "mimeType": "text/plain" }, "metadata": {} }`, string(outs) )
   }
 }
 

@@ -43,7 +43,7 @@ func main() {
 			}
 			case "/case1": {
 				cmd0 := exec.Command("curl", "-L", "-o", "LC80090472014280LGN00_B3.TIF", "https://www.dropbox.com/s/9e8kk0af5lz5odk/LC80090472014280LGN00_B3.TIF?dl=1")
-				cmd0.uun()
+				cmd0.Run()
 				cmd1 := exec.Command("curl", "-L", "-o", "LC80090472014280LGN00_B6.TIF", "https://www.dropbox.com/s/nghh5uo711dvhfz/LC80090472014280LGN00_B6.TIF?dl=1")
 				cmd1.Run()
 

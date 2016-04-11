@@ -31,7 +31,8 @@ func main() {
                 switch r.URL.Path{
 			case "/ls": {
 				cmdLs := exec.Command("ls", "-alh")
-				outLs := cmdLs.Output()
+				outLs, errLs := cmdLs.Output()
+				printError(errLs, w)
 				printOutput(outLs, w)
 			}
 			case "/case1": {

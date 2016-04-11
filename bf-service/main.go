@@ -95,7 +95,9 @@ func main() {
 			}
 			default: {
 				cmd0 := exec.Command("ossim-cli", "shoreline", "--image", "garden_b3.tif,", "garden_b6.tif", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
-                                cmd0.Run()
+                                out0, err0 := cmd0.CombinedOutput()
+				printError(err0, w)
+				printOutput(out0, w)
 
                                 cmd1 := exec.Command("cat", "product.json")
                                 out1, err1 := cmd1.CombinedOutput()

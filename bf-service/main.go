@@ -66,13 +66,18 @@ func main() {
 				cmd2 := exec.Command("ossim-cli", "shoreline", "--image", "LC80150442014002LGN00_B3.TIF,", "LC80150442014002LGN00_B6.TIF", "--projection", "geo-scaled", "--threshold", "0.5", "--tolerance", "0", "product.json")
                                 cmd2.Run()
 
-                                cmd3 := exec.Command("cat", "product.json")
-                                out3, err3 := cmd3.CombinedOutput()
-                                printError(err3, w)
-                                printOutput(out3, w)
+                                //cmd3 := exec.Command("cat", "product.json")
+                                //out3, err3 := cmd3.CombinedOutput()
+                                //printError(err3, w)
+                                //printOutput(out3, w)
 
 				cmd4 := exec.Command("rm", "LC80150442014002LGN00_B3.TIF", "LC80150442014002LGN00_B6.TIF")
                                 cmd4.Run()
+
+				cmd5 := exec.Command("df", "-h")
+                                out5, err5 := cmd5.CombinedOutput()
+                                printError(err5, w)
+                                printOutput(out5, w)
 			}
 			case "/case3": {
 				cmd0 := exec.Command("curl", "-L", "-o", "LC80340432016061LGN00_B3.TIF", "https://www.dropbox.com/s/ejoydxx6zembuxe/LC80340432016061LGN00_B3.TIF?dl=1")

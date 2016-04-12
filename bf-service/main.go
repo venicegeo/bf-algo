@@ -151,6 +151,7 @@ func main() {
                                 //out1, err1 := cmd1.CombinedOutput()
                                 //printError(err1, w)
                                 //printOutput(out1, w)
+				fmt.Fprintf(w, "Just so we have something...")
 				fmt.Fprintf(w, string(r.URL.RawQuery))
 			}
                 }

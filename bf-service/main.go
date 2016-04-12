@@ -29,7 +29,7 @@ func printOutput(outs []byte, w http.ResponseWriter) {
 func main() {
 
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-                switch r.URL.Query().Get("cheese"){
+                switch r.URL.Query().Get("cmd"){
 			case "ls": {
 				cmdLs := exec.Command("ls", "-alh")
 				outLs, errLs := cmdLs.Output()

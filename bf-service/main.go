@@ -40,6 +40,11 @@ func main() {
                                 printError(errLs1, w)
                                 printOutput(outLs1, w)
 
+				cmdLs2 := exec.Command("ls", "-alhR")
+                                outLs2, errLs2 := cmdLs2.Output()
+                                printError(errLs2, w)
+                                printOutput(outLs2, w)
+
 				cmdLs := exec.Command("ossim-info")
 				outLs, errLs := cmdLs.CombinedOutput()
 				printError(errLs, w)

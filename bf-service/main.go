@@ -6,6 +6,7 @@ import (
         "net/http"
 	"strings"
         "os/exec"
+	"os"
 )
 
 
@@ -31,6 +32,7 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Query().Get("cmd"){
 			case "ls": {
+				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
 				cmdLs := exec.Command("ls", "-alh")
 				outLs, errLs := cmdLs.Output()
 				printError(errLs, w)

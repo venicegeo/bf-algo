@@ -32,6 +32,7 @@ func main() {
         http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
                 switch r.URL.Query().Get("cmd"){
 			case "ls": {
+				fmt.Fprintf(w, "HOME:", os.Getenv("HOME"))
 				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
 				cmdLs := exec.Command("ossim-info")
 				outLs, errLs := cmdLs.Output()

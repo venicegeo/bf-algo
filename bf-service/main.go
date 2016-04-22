@@ -35,7 +35,7 @@ func main() {
 				fmt.Fprintf(w, "HOME:", os.Getenv("HOME"))
 				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
 
-				cmdLs1 := exec.Command("ls", "-alhR")
+				cmdLs1 := exec.Command("ln", "-s", "$HOME/ossim_sanbox/lib64/libossim.so.1.9.0", "$HOME/ossim_sanbox/lib64/libossim.so.1")
                                 outLs1, errLs1 := cmdLs1.Output()
                                 printError(errLs1, w)
                                 printOutput(outLs1, w)

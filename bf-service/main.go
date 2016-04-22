@@ -34,8 +34,14 @@ func main() {
 			case "ls": {
 				fmt.Fprintf(w, "HOME:", os.Getenv("HOME"))
 				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
+
+				cmdLs1 := exec.Command("ls", "-alhR")
+                                outLs1, errLs1 := cmdLs1.Output()
+                                printError(errLs1, w)
+                                printOutput(outLs1, w)
+
 				cmdLs := exec.Command("ossim-info")
-				outLs, errLs := cmdLs.Output()
+				outLs, errLs := cmdLs.CombinedOutput()
 				printError(errLs, w)
 				printOutput(outLs, w)
 			}

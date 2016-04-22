@@ -33,7 +33,7 @@ func main() {
                 switch r.URL.Query().Get("cmd"){
 			case "ls": {
 				fmt.Fprintf(w, "PATH:", os.Getenv("PATH"))
-				cmdLs := exec.Command("which", "ossim-info")
+				cmdLs := exec.Command("ossim-info")
 				outLs, errLs := cmdLs.Output()
 				printError(errLs, w)
 				printOutput(outLs, w)
